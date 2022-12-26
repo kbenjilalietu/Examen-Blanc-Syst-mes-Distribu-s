@@ -24,7 +24,7 @@ public class RadarAggregate {
     @CommandHandler
     public RadarAggregate(CreateRadarCommand command){
         if(command.getMaxVitesse()<0){
-            throw  new RuntimeException("La vitesse doit être possitive");
+            throw  new RuntimeException("La vitesse ne peut pas etre negative");
         }
         AggregateLifecycle.apply(new RadarCreatedEvent(
                 command.getId(),

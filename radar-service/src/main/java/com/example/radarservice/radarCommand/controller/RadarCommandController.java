@@ -24,13 +24,14 @@ public class RadarCommandController {
     private EventStore eventStore ;
 
     @PostMapping("/createRadar")
-    public CompletableFuture<String> createRadar(@RequestBody CreateRadarRequestDTO createRadarRequestDTO){
+    public CompletableFuture<String> createRadar(@RequestBody CreateRadarRequestDTO request)
+    {
         return  commandGateway.send(
                 new CreateRadarCommand(
                                 UUID.randomUUID().toString(),
-                                createRadarRequestDTO.getMaxVitesse(),
-                                createRadarRequestDTO.getLongtitude(),
-                                createRadarRequestDTO.getLatitude()
+                                request.getMaxVitesse(),
+                                request.getLongtitude(),
+                                request.getLatitude()
                 ));
     }
 
@@ -46,7 +47,8 @@ public class RadarCommandController {
         ) ;
     }
     @GetMapping("/eventStore/{radarId}")
-    public Stream getEventsForAccount(@PathVariable(value = "radarId") String radarId) {
+    public Stream getEventsForAccount(@PathVariable(value = "radarId") String radarId)
+    {
         return eventStore.readEvents(radarId).asStream();
     }
 

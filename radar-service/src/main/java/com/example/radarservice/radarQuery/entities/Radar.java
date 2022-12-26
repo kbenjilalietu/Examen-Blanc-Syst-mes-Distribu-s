@@ -8,14 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Data @AllArgsConstructor @NoArgsConstructor
 public class Radar {
     @Id
     private String id;
     private double MaxVitesse;
     private double longtitude;
     private double latitude;
-
 }
